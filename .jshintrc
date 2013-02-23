@@ -1,0 +1,27 @@
+{
+    // default settings
+    "forin"             : true,
+    "noarg"             : true,
+    "noempty"           : true,
+    "eqeqeq"            : true,
+    "bitwise"           : true,
+    "strict"            : true,
+    "undef"             : true,
+    "curly"             : true,
+    "browser"           : true,
+    "indent"            : 4,
+    "maxerr"            : 50,
+    "white"             : true,
+    "newcap"            : true,
+    "expr"              : true,
+
+    // project specific
+    "browser"           : true,
+
+    // globals
+    "predef": {
+        // vendor
+        "require"       : true,
+        "define"        : true,
+    }
+}
