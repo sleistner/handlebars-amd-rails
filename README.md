@@ -120,6 +120,10 @@ require([
 });
 ```
 
+## Sample Code
+
+Find a demo application at [https://github.com/sleistner/handlebars-amd-rails-example](https://github.com/sleistner/handlebars-amd-rails-example)
+
 ## Config
 
 Handlebars-amd-rails resolves the name of the template out of relative path of each template file. Relative path starts from app/assets/javascripts/templates/ by default.
