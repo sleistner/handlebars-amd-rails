@@ -1,13 +1,15 @@
-require "handlebars-amd-rails/version.rb"
-require "handlebars-amd-rails/rails/engine.rb"
-require "handlebars-amd-rails/rails/railtie.rb"
+require 'handlebars-amd-rails/version'
+require 'handlebars-amd-rails/rails/template'
+require 'handlebars-amd-rails/rails/engine'
+require 'handlebars-amd-rails/rails/railtie'
+require 'ostruct'
 
 module Handlebars
 
   class Config < OpenStruct
 
     def to_camelcase
-      inject({}) do |memo, (key, value)|
+      instance_variable_get(:@table).inject({}) do |memo, (key, value)|
         memo[key.to_s.camelcase(:lower)] = value
         memo
       end
@@ -23,4 +25,3 @@ module Handlebars
     yield self.config
   end
 end
-
