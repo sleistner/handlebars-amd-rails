@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Handlebars::Amd::Rails::VERSION
   gem.authors       = ["Steffen Leistner"]
   gem.email         = ["sleistner@gmail.com"]
-  gem.summary       = %q{Use handlebars templates with rails.}
-  gem.description   = %q{Use handlebars templates in a amd version with rails.}
+  gem.summary       = %q{Use Handlebars templates wrapped in a AMD define block with rails.}
+  gem.description   = %q{Use Handlebars templates wrapped in a AMD define block, with the asset pipeline in Rails 3.1+ applications.}
   gem.homepage      = "https://github.com/sleistner/handlebars-amd-rails"
 
   gem.rubyforge_project = "handlebars-amd-rails"
