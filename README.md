@@ -50,23 +50,23 @@ define(['handlebars'], function(Handlebars) {
 });
 ```
 
-If you like, you can take advantage of the asset pipeline and chain your template through other processors like haml:
+You can take advantage of the asset pipeline by chaining your template through other processors like haml:
 
 ```
 /* app/assets/javascripts/templates/demo.hbs.haml */
 
-%p
+%p.welcome
   Hello {name}! You have {count} new messages.
 ```
 
-Returns something like:
+Which will be compiled and rendered as:
 
 ```javascript
 define(['handlebars'], function(Handlebars) {
     var templates = Handlebars.templates || (Handlebars.templates = {});
     return templates['demo'] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
         helpers = helpers || Handlebars.helpers; data = data || {};
-        return "<p>Hello {name}! You have {count} new messages.</p>";
+        return "<p class='welcome'>Hello {name}! You have {count} new messages.</p>";
     });
 });
 ```
