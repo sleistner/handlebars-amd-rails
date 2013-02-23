@@ -92,7 +92,7 @@ require([
 });
 ```
 
-If the template renders partials, the partial need to be required:
+If the template renders partials, partial files need to be required:
 
 ```
 /* app/assets/javascripts/templates/demo.hbs */
@@ -105,7 +105,8 @@ Hello {{name}}! You have {{count}} new messages.
 ```
 /* app/assets/javascripts/templates/_header.hbs */
 
-I'm the Common Header Partial.
+%header
+  Hola!
 ```
 
 ```javascript
