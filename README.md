@@ -35,7 +35,7 @@ Place individual Handlebars template file in their own file with template_name.{
 ```
 /* app/assets/javascripts/templates/demo.hbs */
 
-Hello {name}! You have {count} new messages.
+Hello {{name}}! You have {{count}} new messages.
 ```
 
 Which will be compiled and rendered as:
@@ -45,7 +45,7 @@ define(['handlebars'], function(Handlebars) {
     var templates = Handlebars.templates || (Handlebars.templates = {});
     return templates['demo'] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
         helpers = helpers || Handlebars.helpers; data = data || {};
-        return "Hello {name}! You have {count} new messages.";
+        return "Hello {{name}}! You have {{count}} new messages.";
     });
 });
 ```
@@ -56,7 +56,7 @@ You can take advantage of the asset pipeline by chaining your template through o
 /* app/assets/javascripts/templates/demo.hbs.haml */
 
 %p.welcome
-  Hello {name}! You have {count} new messages.
+  Hello {{name}}! You have {{count}} new messages.
 ```
 
 Which will be compiled and rendered as:
@@ -66,7 +66,7 @@ define(['handlebars'], function(Handlebars) {
     var templates = Handlebars.templates || (Handlebars.templates = {});
     return templates['demo'] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
         helpers = helpers || Handlebars.helpers; data = data || {};
-        return "<p class='welcome'>Hello {name}! You have {count} new messages.</p>";
+        return "<p class='welcome'>Hello {{name}}! You have {{count}} new messages.</p>";
     });
 });
 ```
@@ -97,13 +97,13 @@ If the template renders partials, the partial need to be required:
 ```
 /* app/assets/javascripts/templates/demo.hbs */
 
-{{> header }}
+{{>_header}}
 
-Hello {name}! You have {count} new messages.
+Hello {{name}}! You have {{count}} new messages.
 ```
 
 ```
-/* app/assets/javascripts/templates/header.hbs */
+/* app/assets/javascripts/templates/_header.hbs */
 
 I'm the Common Header Partial.
 ```
@@ -112,7 +112,7 @@ I'm the Common Header Partial.
 require([
     'jquery',
     'template!demo',
-    'partial!header',
+    'partial!_header',
 ], function ($, template) {
     $('body').html(template({
         name: 'Joe', count: 10
