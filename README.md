@@ -1,6 +1,6 @@
 # Handlebars Amd Rails
 
-Use Handlebars templates wrapped in a AMD define block, with the asset pipeline in Rails 3.1+ applications.
+Use Handlebars templates precompiled and wrapped in a AMD define block, with the asset pipeline in Rails 3.1+ applications.
 
 ## Installation
 
