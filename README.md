@@ -2,7 +2,7 @@
 
 Use Handlebars templates precompiled and wrapped in a AMD define block, with the asset pipeline in Rails 3.1+ applications.
 
-[![Build Status](https://travis-ci.org/sleistner/handlebars-amd-rails.png)](https://travis-ci.org/sleistner/handlebars-amd-rails)
+[![Build Status](https://travis-ci.org/sleistner/handlebars-amd-rails.png?branch=master)](https://travis-ci.org/sleistner/handlebars-amd-rails)
 
 ## Installation
 
