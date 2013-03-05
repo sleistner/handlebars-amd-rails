@@ -70,7 +70,7 @@ define([
 You can take advantage of the asset pipeline by chaining your template through other processors like haml:
 
 ```haml
-/ app/assets/javascripts/templates/demo.hbs.haml
+/ app/assets/javascripts/templates/demo/index.hbs.haml
 
 %p.welcome
   Hello {{name}}! You have {{count}} new messages.
@@ -83,7 +83,7 @@ define([
 	"handlebars"
 ], function(Handlebars) {
     var templates = Handlebars.templates || (Handlebars.templates = {});
-    return templates['demo'] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+    return templates['demo/index'] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
         helpers = helpers || Handlebars.helpers; data = data || {};
         return "<p class='welcome'>Hello {{name}}! You have {{count}} new messages.</p>";
     });
@@ -103,7 +103,7 @@ Using templates:
 ```javascript
 require([
     'jquery',
-    'template!demo'
+    'template!demo/index'
 ], function ($, template) {
     $('body').html(template({
         name: 'Joe', count: 10
