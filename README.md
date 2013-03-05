@@ -32,28 +32,45 @@ Require handlebars.js in your AMD config file
 
 Place individual Handlebars template file in their own file with template_name.{hbs, handlebars} extension.
 
-```
-/* app/assets/javascripts/templates/demo.hbs */
+```html
+<!-- app/assets/javascripts/templates/shared/header.hbs -->
 
-Hello {{name}}! You have {{count}} new messages.
+<header>
+  A logo perhaps?
+</header> 
+```
+
+```html
+<!-- app/assets/javascripts/templates/demo/index.hbs -->
+
+{{>shared/_header}}
+
+<p class="welcome">
+  Hello {{name}}! You have {{count}} new messages.
+</p>
 ```
 
 Which will be compiled and rendered as:
 
 ```javascript
-define(['handlebars'], function(Handlebars) {
-    var templates = Handlebars.templates || (Handlebars.templates = {});
-    return templates['demo'] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-        helpers = helpers || Handlebars.helpers; data = data || {};
-        return "Hello {{name}}! You have {{count}} new messages.";
-    });
+define([
+  "handlebars",
+  "partial!shared/_header"
+], function(Handlebars) {
+  var templates = Handlebars.templates || (Handlebars.templates = {});
+  return templates['demo/index'] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+    helpers = helpers || Handlebars.helpers; partials = partials || Handlebars.partials; data = data || {};
+    var buffer = "";
+	// …
+    return buffer;
+  });
 });
 ```
 
 You can take advantage of the asset pipeline by chaining your template through other processors like haml:
 
-```
-/* app/assets/javascripts/templates/demo.hbs.haml */
+```haml
+/ app/assets/javascripts/templates/demo.hbs.haml
 
 %p.welcome
   Hello {{name}}! You have {{count}} new messages.
@@ -62,7 +79,9 @@ You can take advantage of the asset pipeline by chaining your template through o
 Which will be compiled and rendered as:
 
 ```javascript
-define(['handlebars'], function(Handlebars) {
+define([
+	"handlebars"
+], function(Handlebars) {
     var templates = Handlebars.templates || (Handlebars.templates = {});
     return templates['demo'] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
         helpers = helpers || Handlebars.helpers; data = data || {};
@@ -85,35 +104,6 @@ Using templates:
 require([
     'jquery',
     'template!demo'
-], function ($, template) {
-    $('body').html(template({
-        name: 'Joe', count: 10
-    }))
-});
-```
-
-If the template renders partials, partial files need to be required:
-
-```
-/* app/assets/javascripts/templates/demo.hbs */
-
-{{>_header}}
-
-Hello {{name}}! You have {{count}} new messages.
-```
-
-```
-/* app/assets/javascripts/templates/_header.hbs */
-
-%header
-  Hola!
-```
-
-```javascript
-require([
-    'jquery',
-    'template!demo',
-    'partial!_header',
 ], function ($, template) {
     $('body').html(template({
         name: 'Joe', count: 10
