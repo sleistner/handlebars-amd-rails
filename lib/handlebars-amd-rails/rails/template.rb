@@ -48,7 +48,7 @@ module Handlebars
 
         def interpolate(template)
           unindent <<-JS
-            define(['handlebars'], function(Handlebars) {
+            define(#{requirements}, function(Handlebars) {
               var templates = Handlebars.templates || (Handlebars.templates = {});
               return templates['#{template_name}'] = Handlebars.template(#{template});
             });
@@ -59,6 +59,16 @@ module Handlebars
           @template_name ||= begin
             template_root = Handlebars.config.template_root
             file.split(template_root).last.split('.', 2).first
+          end
+        end
+
+        def requirements
+          JSON.pretty_generate(['handlebars'] + detect_partials)
+        end
+
+        def detect_partials
+          data.scan(/\{\{>\s*([^\s]*)\s*\}\}/).flatten.uniq.map do |partial|
+            "partial!#{partial}"
           end
         end
 
